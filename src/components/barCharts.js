@@ -4,8 +4,6 @@ import Chart from 'react-google-charts';
 class BarCharts extends Component {
     constructor(props) {
         super(props);
-            //verifier la bonne réception de l'object NEO data
-        console.log(props.neoData);
             // neoDataObject :Assigner un l'object NEO (props du parent) à un state en ciblant 'near_earth_objects'
             // neoDataDisplay : Créer un state qui va etre utiliser comme une base avec par default les titres du graph
         this.state = {
