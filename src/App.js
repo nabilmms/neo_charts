@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BarCharts from './components/barCharts';
-import DropDown from './styleTools/dropDown';
+//import DropDown from './styleTools/dropDown';
 
 class App extends Component {
     constructor(props){
