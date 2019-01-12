@@ -3,24 +3,45 @@ import Chart from 'react-google-charts';
 
 class BarCharts extends Component {
     constructor(props) {
+
         super(props);
-            // neoDataObject :Assigner un l'object NEO (props du parent) à un state en ciblant 'near_earth_objects'
             // neoDataDisplay : Créer un state qui va etre utiliser comme une base avec par default les titres du graph
         this.state = {
-            neoDataObject: props.neoData.near_earth_objects,
             neoDataDisplay: [['NEO Name', 'Min Estimated Diameter (KMS)', 'Max Estimated Diameter'],]
         };
+
+    }
+
+    //Appel a l'api qui nous return une promise
+    callApi(){
+        return fetch("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=h2vuNpgOwi4P3bqUpqys0ANkIuHL1cebMn0jeWE5")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    return result
+                },
+
+            );
+    }
+
+    //Traite la promise et boucle sur near_earth_objects afin d'ajouter les valeurs de l'api à neoDataDisplay
+
+    componentDidMount(){
+        let neoDataDisplay  = this.state.neoDataDisplay;
+
+        this.callApi().then(result =>
+            result.near_earth_objects.map((obj) =>
+                neoDataDisplay.push([obj.name , obj.estimated_diameter.kilometers.estimated_diameter_min,
+                    obj.estimated_diameter.kilometers.estimated_diameter_max])
+            )
+        );
+
+        console.log(neoDataDisplay);
+
+
     }
 
     render() {
-
-        //Ajouter les valeurs souhaiter dans le state neoDataDisplay avant de les afficher
-
-        let neoDataDisplay  = this.state.neoDataDisplay;
-        this.state.neoDataObject.map((obj) =>
-            neoDataDisplay.push([obj.name , obj.estimated_diameter.kilometers.estimated_diameter_min,
-                                            obj.estimated_diameter.kilometers.estimated_diameter_max])
-        );
 
         return (
             <div>
