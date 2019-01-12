@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import neoData from './data/neo_data';
 import BarCharts from './components/barCharts';
+import axios from 'axios';
 
 class App extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {neoData: []};
+    }
+
+    componentDidMount(){
+        
+    }
   render() {
     return (
       <div>
