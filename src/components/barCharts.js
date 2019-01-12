@@ -12,7 +12,7 @@ class BarCharts extends Component {
 
     }
 
-    //Appel a l'api qui nous return une promise
+    //Appel a l'api qui nous return un object (promise)
     callApi(){
         return fetch("https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=h2vuNpgOwi4P3bqUpqys0ANkIuHL1cebMn0jeWE5")
             .then(res => res.json())
@@ -34,11 +34,7 @@ class BarCharts extends Component {
                 neoDataDisplay.push([obj.name , obj.estimated_diameter.kilometers.estimated_diameter_min,
                     obj.estimated_diameter.kilometers.estimated_diameter_max])
             )
-        );
-
-        console.log(neoDataDisplay);
-
-
+        );  
     }
 
     render() {
