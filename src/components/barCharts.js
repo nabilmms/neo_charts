@@ -34,7 +34,7 @@ class BarCharts extends Component {
                 neoDataDisplay.push([obj.name , obj.estimated_diameter.kilometers.estimated_diameter_min,
                     obj.estimated_diameter.kilometers.estimated_diameter_max])
             )
-        );  
+        );
     }
 
     render() {
